@@ -10,7 +10,7 @@ const CatNav = () => {
 
     useEffect(()=>{
         dispatch(getCategories())
-    },[])
+    },[]);
 
     return(
         <>
@@ -18,9 +18,11 @@ const CatNav = () => {
                 <ul>
                     {
                         categories.map((category) => {
-                            return (
-                                <li className='list-items'><a href='#'> {category} </a></li>
-                            )
+                            if (category.parent_category_id === null){
+                                return (
+                                    <li className='list-items'><a href='#'> {category.category} </a></li>
+                                )
+                            }
                         })
                     }
                 </ul>             

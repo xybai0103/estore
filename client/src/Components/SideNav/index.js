@@ -1,9 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import accordianSlice from '../../Redux/Accordion/accordionCatSlice';
 import './_side-nav.scss';
+import { getCategories } from '../../Redux/Category/actions';
 
 const SideNav = () => {
-    const accordianData = useSelector (accordianSlice.getInitialState);
+    const accordianData = useSelector (state => state.categoryReducer.categories);
+    const dispatch = useDispatch ();
+
+    useEffect(()=>{
+        dispatch(getCategories())
+    },[]);
+   
+
+
 
     return (
         <div className='side-nav'>
@@ -14,30 +24,32 @@ const SideNav = () => {
             <div className='accordion'>
                 {
                     accordianData.map((accordianCategory, key) => {
-                        return(
-                            <div className='accordion-item individual-category'>
-                                <div className='accordion-header'>
-                                    <button className='accordion-button' data-bs-target={'#collapse'+key} data-bs-toggle='collapse'>
-                                        <div className='category-title'>
-                                            <a href='#'>{accordianCategory.category}</a>
-                                        </div>
-                                    </button>
-                                </div>
-                                <div className='accordion-collapse collapse show' id={'collapse'+key}>
-                                    <div className='accordion-body'>
-                                        <ul>
-                                            {
-                                                accordianCategory.items.map((item) => {
-                                                    return(
-                                                        <li className='sub-items'><a href='#'>{item}</a></li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
+                        if (accordianCategory.parent_category_id === null){
+                            return(
+                                <div className='accordion-item individual-category'>
+                                    <div className='accordion-header'>
+                                        <button className='accordion-button' data-bs-target={'#collapse'+key} data-bs-toggle='collapse'>
+                                            <div className='category-title'>
+                                                <a href='#'>{accordianCategory.category}</a>
+                                            </div>
+                                        </button>
                                     </div>
-                                </div>
-                            </div> 
-                        )
+                                    <div className='accordion-collapse collapse show' id={'collapse'+key}>
+                                        <div className='accordion-body'>
+                                            <ul>
+                                                {
+                                                    accordianData.map((subCategory) => {
+                                                        if(accordianCategory.id === subCategory.parent_category_id){
+                                                            return<li className='sub-items'><a href='#'>{subCategory.category}</a></li>
+                                                        }
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div> 
+                            )
+                        }
                     })
                 }
 
