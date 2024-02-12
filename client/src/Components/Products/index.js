@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import productSlice from '../../store/slices/productSlice';
+import productSlice from '../../Redux/Product/productSlice';
 import './_products.scss';
 
 const Products = () => {
