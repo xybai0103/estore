@@ -36,7 +36,7 @@ const ProductDetails = ()=>{
                         <span> Some Product Description Given Here... </span>
                     </div>
 
-                    <div className="my-5">
+                    <div className="my-5" onClick={addToCart}>
                         <div className="btn btn-warning cart-button">
                             <div className="cart-icon-container">
                                 <i className="fa fa-shopping-cart"/>
