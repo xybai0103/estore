@@ -1,9 +1,17 @@
+import GoogleLogin from 'react-google-login';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './_top-nav.scss';
+import { gapi } from 'gapi-script';
 
 const TopNav = () => {
     const cartItemCount = useSelector(state=>state.cr.totalItems);
+    const [userDetails,setUserDetails] = useState("");
+
+    const successHandler = (res)=>{
+        setUserDetails(res.profileObj);
+    }
 
     return(
         <div>
@@ -25,7 +33,19 @@ const TopNav = () => {
                 </div>
                 <div className='login-container p-0'>
                     <i className='fa fa-user-circle user-icon'/>
-                    <h5><a href='#'>Login</a></h5> / <h5><a href='#'>Register</a></h5>
+                    <h5>
+                        {
+                            userDetails==="" ?
+                                <GoogleLogin
+                                    clientId='795932695987-3h607tflppu0e4gf2dfp80uf31ujdhhf.apps.googleusercontent.com'
+                                    buttonText='Login'
+                                    cookiePolicy='single_host_origin'
+                                    onSuccess={successHandler}
+                                />
+                            :
+                            userDetails.name
+                        }
+                    </h5>
                 </div>
                 <div className='cart-wishlist'>
                     <ul className='p-0'>
