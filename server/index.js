@@ -9,9 +9,9 @@ app.use(cors());
 app.use("/productCategories",productCategories);
 app.use("/",products);
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 const server = app.listen(PORT, ()=>{
-    console.log("App is running on the port - 5001");
+    console.log("App is running on the port");
 })
 
