@@ -4,7 +4,7 @@ export const getCategories = createAsyncThunk (
     'getCategories',
     ()=>{
         // const categories = fetch("http://localhost:5001/productCategories")
-        const categories = fetch("https://estore24-bd1f2ca2cf40.herokuapp.com/productCategories")
+        const categories = fetch(`${process.env.REACT_APP_API_URL}/productCategories`)
         .then((res)=>res.json());
         return categories;
     }

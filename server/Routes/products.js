@@ -1,15 +1,17 @@
 const express = require ('express');
 const products = express.Router();
 const mysql = require('mysql2');
+require('dotenv').config();
 
 let pool;
+
 if(process.env.JAWSDB_URL){
     pool = mysql.createPool(process.env.JAWSDB_URL);
 }else{
     pool = mysql.createPool({
         host: "localhost",
         user: "root",
-        password: "Bxy04250201!",
+        password: process.env.DB_PW,
         database: "estore",
         port: 3306,
         multipleStatements: true
