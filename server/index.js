@@ -3,6 +3,7 @@ const productCategories = require('./Routes/productCategories');
 const products = require("./Routes/products");
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 
 app.use(cors());
 
