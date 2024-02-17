@@ -1,4 +1,5 @@
 const express = require ('express');
+const path = require('path');
 const productCategories = require('./Routes/productCategories');
 const products = require("./Routes/products");
 const app = express();
@@ -7,12 +8,11 @@ require('dotenv').config();
 
 app.use(cors());
 
-// Serve static files from the React app build directory
-// app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
   
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 app.use("/productCategories",productCategories);
 app.use("/",products);
