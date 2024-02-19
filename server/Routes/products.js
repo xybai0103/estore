@@ -1,5 +1,6 @@
 const express = require ('express');
 const products = express.Router();
+const pool = require('../config/db');
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
