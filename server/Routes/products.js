@@ -1,24 +1,17 @@
 const express = require ('express');
 const products = express.Router();
 const mysql = require('mysql2');
-require('dotenv').config();
 
-let pool;
+const pool = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "Bxy04250201!",
+    database: "estore",
+    port: 3306,
+    multipleStatements: true
+})
 
-if(process.env.JAWSDB_URL){
-    pool = mysql.createPool(process.env.JAWSDB_URL);
-}else{
-    pool = mysql.createPool({
-        host: "localhost",
-        user: "root",
-        password: process.env.DB_PW,
-        database: "estore",
-        port: 3306,
-        multipleStatements: true
-    })
-}
-
-products.get("/getProducts",(req,res)=>{
+products.get("/",(req,res)=>{
     let productData;
     pool.query("Select * from products", (err, products)=>{
         if(err){
