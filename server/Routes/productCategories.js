@@ -1,6 +1,6 @@
 const express = require ('express');
 const productCategories = express.Router();
-const pool = require('../config/db');
+const pool = require('../config/connection');
 
 productCategories.get("/",(req,res)=>{
     let categorydata;

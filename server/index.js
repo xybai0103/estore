@@ -1,3 +1,4 @@
+require('dotenv').config(); 
 const express = require ('express');
 const productCategories = require('./Routes/productCategories');
 const products = require("./Routes/products");
@@ -9,7 +10,7 @@ app.use(cors());
 app.use("/productCategories",productCategories);
 app.use("/getProducts",products);
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 const server = app.listen(PORT, ()=>{
     console.log("App is running on the port");
