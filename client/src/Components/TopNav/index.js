@@ -1,4 +1,4 @@
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -35,14 +35,14 @@ const TopNav = () => {
                     <i className='fa fa-user-circle user-icon'/>
                     <h5>
                         {
-                            userDetails==="" ?
-                                <GoogleLogin
-                                    clientId='795932695987-3h607tflppu0e4gf2dfp80uf31ujdhhf.apps.googleusercontent.com'
-                                    buttonText='Login'
-                                    cookiePolicy='single_host_origin'
-                                    onSuccess={successHandler}
-                                />
-                            :
+                            // userDetails==="" ?
+                            //     <GoogleLogin
+                            //         clientId='795932695987-3h607tflppu0e4gf2dfp80uf31ujdhhf.apps.googleusercontent.com'
+                            //         buttonText='Login'
+                            //         cookiePolicy='single_host_origin'
+                            //         onSuccess={successHandler}
+                            //     />
+                            // :
                             userDetails.name
                         }
                     </h5>
